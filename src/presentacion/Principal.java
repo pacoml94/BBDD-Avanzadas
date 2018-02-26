@@ -1,14 +1,26 @@
 package presentacion;
 
-import persistencia.Agente;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import dominio.Jugador;
 
 class Principal {
 
 	public static void main(String[] args) {
-		Agente agente = Agente.getAgente();
+		List<Jugador> jugadores = new ArrayList<>();
+		Jugador jugador = new Jugador();
+		try {
+			jugadores = jugador.leerTodos();
+			for (Jugador jugador1 : jugadores) {
+				System.out.println(jugador1.toString());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		System.out.println(agente);
-		System.out.print("aaaaaaaaaaaaaaaaassssssssss");
 	}
 	
 }

@@ -12,7 +12,7 @@ public class Agente {
     private Agente() {
         try {
             Class.forName(driver);
-            connection = DriverManager.getConnection(url, "", "");     
+            connection = DriverManager.getConnection(url, "root", "");     
         } catch (ClassNotFoundException | SQLException e) {
             // TODO Auto-generated catch block
             System.out.println("Fallo al conectar con BD");
