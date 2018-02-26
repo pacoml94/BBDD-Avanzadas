@@ -7,7 +7,7 @@ public class Agente {
 	private Connection connection;
     private String nombreBD = "fifa18";
     private String driver = "com.mysql.jdbc.Driver";
-    private String url = "jdbc:mysql://localhost:8080/"+nombreBD;
+    private String url = "jdbc:mysql://localhost:3307/"+nombreBD;
      
     private Agente() {
         try {
