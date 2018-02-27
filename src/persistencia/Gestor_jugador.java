@@ -44,7 +44,16 @@ public class Gestor_jugador {
 		return jugadores;
 	}
 	
-	public Jugador read() {
-		String sql =
+	public Jugador readJugador(String nombre) throws SQLException {
+		String sql = "SELECT * FROM playerpersonaldata "
+				+ "WHERE Name='"+nombre+"';";
+		Jugador j = null;
+		ResultSet rs = agenteBD.read(sql);
+		
+		if (rs.next()) {
+			j = new Jugador(rs.getString("Name"), rs.getString("Nationality"), rs.getString("Club"), rs.getString("Value"), rs.getInt("ID"), rs.getInt("Age"), rs.getInt("Potential"), rs.getInt("Overall"));
+		}
+		
+		return j;
 	}
 }

@@ -19,6 +19,8 @@ import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 public class OnceIdealGUI {
 
@@ -80,6 +82,7 @@ public class OnceIdealGUI {
 		}
 		{
 			DefaultListModel modeloLista = new DefaultListModel<>();
+			lstJugadores.addListSelectionListener(new LstJugadoresListSelectionListener());
 			lstJugadores.setModel(modeloLista);
 			for (int i = 0; i < listaJugadores.size(); i++) {
 				modeloLista.addElement(listaJugadores.get(i).getNombre());
@@ -90,6 +93,19 @@ public class OnceIdealGUI {
 			DefaultListModel modeloLista = new DefaultListModel<>();
 			for (int i = 0; i < listaJugadores.size(); i++) {
 				modeloLista.addElement(listaJugadores.get(i).getNombre());
+			}
+		}
+	}
+	private class LstJugadoresListSelectionListener implements ListSelectionListener {
+		public void valueChanged(ListSelectionEvent e) {
+			String nombre = lstJugadores.getSelectedValue().toString();
+			Jugador aux = new Jugador(nombre);
+			try {
+				Jugador jugador = aux.leerJugador();
+				System.out.println(jugador);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 		}
 	}

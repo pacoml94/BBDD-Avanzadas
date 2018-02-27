@@ -15,13 +15,16 @@ public class Jugador {
 		gestor_jugador = new Gestor_jugador();
 	}
 	
-	public Jugador(String nombre, String nac, String flag, String club, String logo, String valor, int id, int edad,
+	public Jugador(String nombre) {
+		gestor_jugador = new Gestor_jugador();
+		this.nombre = nombre;
+	}
+
+	public Jugador(String nombre, String nac, String club, String valor, int id, int edad,
 			int potencial, int overall) {
 		this.nombre = nombre;
 		this.nac = nac;
-		this.flag = flag;
 		this.club = club;
-		this.logo = logo;
 		this.valor = valor;
 		this.id = id;
 		this.edad = edad;
@@ -152,14 +155,16 @@ public class Jugador {
 
 	@Override
 	public String toString() {
-		return "Jugador [nombre=" + nombre + ", foto=" + foto + ", nac=" + nac
-				+ ", flag=" + flag + ", club=" + club + ", logo=" + logo + ", id=" + id + ", edad=" + edad
-				+ ", potencial=" + potencial + ", overall=" + overall + ", salario=" + salario + ", salEspecial="
-				+ salEspecial + ", valor=" + valor + "]\n";
+		return "Jugador [nombre=" + nombre + ", nac=" + nac + ", club=" + club + ", id=" + id + ", edad=" + edad
+				+ ", potencial=" + potencial + ", overall=" + overall + ", valor=" + valor + "]\n";
 	}
 
 	public List<Jugador> leerTodos() throws SQLException {
 		return gestor_jugador.readAll();
+	}
+	
+	public Jugador leerJugador() throws SQLException {
+		return gestor_jugador.readJugador(this.nombre);
 	}
 
 }
