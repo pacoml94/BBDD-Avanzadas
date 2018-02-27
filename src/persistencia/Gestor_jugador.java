@@ -44,4 +44,7 @@ public class Gestor_jugador {
 		return jugadores;
 	}
 	
+	public Jugador read() {
+		String sql =
+	}
 }
