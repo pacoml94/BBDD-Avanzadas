@@ -8,7 +8,7 @@ import persistencia.Gestor_jugador;
 public class Jugador {
 
 	private Gestor_jugador gestor_jugador;
-	private String nombre, foto, nac, flag, club, logo, valor, salario;
+	private String nombre, foto, nac, flag, club, logo, valor, salario, precio;
 	private int id, edad, potencial, overall, salEspecial;
 	//id nombre edad nacion potencial overall club valor
 	public Jugador() {
@@ -21,7 +21,7 @@ public class Jugador {
 	}
 
 	public Jugador(String nombre, String nac, String club, String valor, int id, int edad,
-			int potencial, int overall) {
+			int potencial, int overall, String precio) {
 		this.nombre = nombre;
 		this.nac = nac;
 		this.club = club;
@@ -30,6 +30,7 @@ public class Jugador {
 		this.edad = edad;
 		this.potencial = potencial;
 		this.overall = overall;
+		this.precio = precio;
 	}
 
 	public Jugador(int id2, String nombre2, int edad2, String foto2, String nac2, String flag2, int overall2,
@@ -151,6 +152,14 @@ public class Jugador {
 
 	public void setSalEspecial(int salEspecial) {
 		this.salEspecial = salEspecial;
+	}
+
+	public String getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(String precio) {
+		this.precio = precio;
 	}
 
 	@Override

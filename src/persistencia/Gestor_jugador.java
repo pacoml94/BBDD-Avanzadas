@@ -51,7 +51,8 @@ public class Gestor_jugador {
 		ResultSet rs = agenteBD.read(sql);
 		
 		if (rs.next()) {
-			j = new Jugador(rs.getString("Name"), rs.getString("Nationality"), rs.getString("Club"), rs.getString("Value"), rs.getInt("ID"), rs.getInt("Age"), rs.getInt("Potential"), rs.getInt("Overall"));
+			j = new Jugador(rs.getString("Name"), rs.getString("Nationality"), rs.getString("Club"), rs.getString("Value"), 
+					rs.getInt("ID"), rs.getInt("Age"), rs.getInt("Potential"), rs.getInt("Overall"), rs.getString("Value"));
 		}
 		
 		return j;

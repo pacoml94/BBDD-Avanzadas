@@ -21,6 +21,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.JLabel;
+import java.awt.GridLayout;
+import javax.swing.border.TitledBorder;
+import java.awt.Color;
 
 public class OnceIdealGUI {
 
@@ -30,6 +34,21 @@ public class OnceIdealGUI {
 	private final JPanel pnlJugadoresDisponibles = new JPanel();
 	private final JScrollPane scrollPane = new JScrollPane();
 	private final JList lstJugadores = new JList();
+	private final JLabel lblIdDelJugador = new JLabel("ID del jugador:");
+	private final JLabel lblID = new JLabel("");
+	private final JLabel lblNombreDelJugador = new JLabel("Nombre del jugador:");
+	private final JLabel lblEdad = new JLabel("Edad:");
+	private final JLabel lblNacionalidad = new JLabel("Nacionalidad:");
+	private final JLabel lblOverall = new JLabel("Overall:");
+	private final JPanel panel = new JPanel();
+	private final JLabel lblClub = new JLabel("Club:");
+	private final JLabel lblPrecioDeMercado = new JLabel("Precio de mercado:");
+	private final JLabel lblNom = new JLabel("");
+	private final JLabel lblE = new JLabel("");
+	private final JLabel lblNac = new JLabel("");
+	private final JLabel lblOV = new JLabel("");
+	private final JLabel lblCl = new JLabel("");
+	private final JLabel lblPrecio = new JLabel("");
 	/**
 	 * Launch the application.
 	 */
@@ -90,6 +109,42 @@ public class OnceIdealGUI {
 			scrollPane.setViewportView(lstJugadores);
 		}
 		{
+			panel.setBorder(new TitledBorder(null, "Informaci\u00F3n del jugador", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLUE));
+			panel.setBounds(239, 68, 323, 358);
+			pnlJugadoresDisponibles.add(panel);
+		}
+		panel.setLayout(new GridLayout(8, 2, 0, 0));
+		panel.add(lblIdDelJugador);
+		panel.add(lblID);
+		panel.add(lblNombreDelJugador);
+		{
+			panel.add(lblNom);
+		}
+		panel.add(lblEdad);
+		{
+			panel.add(lblE);
+		}
+		panel.add(lblNacionalidad);
+		{
+			panel.add(lblNac);
+		}
+		panel.add(lblOverall);
+		{
+			panel.add(lblOV);
+		}
+		{
+			panel.add(lblClub);
+		}
+		{
+			panel.add(lblCl);
+		}
+		{
+			panel.add(lblPrecioDeMercado);
+		}
+		{
+			panel.add(lblPrecio);
+		}
+		{
 			DefaultListModel modeloLista = new DefaultListModel<>();
 			for (int i = 0; i < listaJugadores.size(); i++) {
 				modeloLista.addElement(listaJugadores.get(i).getNombre());
@@ -102,7 +157,13 @@ public class OnceIdealGUI {
 			Jugador aux = new Jugador(nombre);
 			try {
 				Jugador jugador = aux.leerJugador();
-				System.out.println(jugador);
+				lblID.setText(String.valueOf(jugador.getId()));
+				lblNom.setText(jugador.getNombre());
+				lblE.setText(String.valueOf(jugador.getEdad()));
+				lblNac.setText(jugador.getNac());
+				lblOV.setText(String.valueOf(jugador.getOverall()));
+				lblCl.setText(jugador.getClub());
+				lblPrecio.setText(jugador.getPrecio());
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
