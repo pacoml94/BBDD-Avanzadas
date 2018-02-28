@@ -33,6 +33,7 @@ import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.ListSelectionModel;
 
 public class OnceIdealGUI {
 
@@ -61,6 +62,9 @@ public class OnceIdealGUI {
 	private final JComboBox cbFormacion = new JComboBox();
 	private final JPanel pnlCampo = new JPanel();
 	private final JLabel lblImagenCampo = new JLabel("");
+	private final JScrollPane scrollPane_1 = new JScrollPane();
+	private final JList lstAlineacionInicial = new JList();
+	private List<Jugador> onceInicial;
 	/**
 	 * Launch the application.
 	 */
@@ -89,6 +93,7 @@ public class OnceIdealGUI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		this.onceInicial = new ArrayList<>();
 		initialize();
 	}
 
@@ -113,6 +118,7 @@ public class OnceIdealGUI {
 		}
 		{
 			DefaultListModel modeloLista = new DefaultListModel<>();
+			lstJugadores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			lstJugadores.addListSelectionListener(new LstJugadoresListSelectionListener());
 			lstJugadores.setModel(modeloLista);
 			for (int i = 0; i < listaJugadores.size(); i++) {
@@ -162,7 +168,7 @@ public class OnceIdealGUI {
 		pnlAlineacion.setLayout(null);
 		{
 			cbFormacion.setBounds(161, 6, 236, 27);
-			cbFormacion.setModel(new DefaultComboBoxModel(new String[] {"Seleccione una formación…", "4-4-2", "4-3-3", "4-3-2-1"}));
+			cbFormacion.setModel(new DefaultComboBoxModel(new String[] {"Seleccione una formación…", "4-4-2", "4-3-3", "3-4-2-1", "4-1-2-1-2", "5-2-1-2"}));
 			pnlAlineacion.add(cbFormacion);
 		}
 		{
@@ -171,6 +177,19 @@ public class OnceIdealGUI {
 		}
 		{
 			pnlCampo.setLayout(null);
+			{
+				scrollPane_1.setBounds(161, 59, 190, 314);
+				pnlCampo.add(scrollPane_1);
+			}
+			{
+				lstAlineacionInicial.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				DefaultListModel modeloLista = new DefaultListModel<>();
+				for (int i = 0; i < listaJugadores.size(); i++) {
+					modeloLista.addElement(listaJugadores.get(i).getNombre());
+				}
+				lstAlineacionInicial.setModel(modeloLista);
+				scrollPane_1.setViewportView(lstAlineacionInicial);
+			}
 			{
 				lblImagenCampo.setBounds(0, 0, pnlCampo.getWidth(), pnlCampo.getHeight());
 				pnlCampo.add(lblImagenCampo);
