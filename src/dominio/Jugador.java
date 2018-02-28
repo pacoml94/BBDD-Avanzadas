@@ -10,7 +10,7 @@ public class Jugador {
 	private Gestor_jugador gestor_jugador;
 	private String nombre, foto, nac, flag, club, logo, valor, salario, precio;
 	private int id, edad, potencial, overall, salEspecial;
-	//id nombre edad nacion potencial overall club valor
+	
 	public Jugador() {
 		gestor_jugador = new Gestor_jugador();
 	}

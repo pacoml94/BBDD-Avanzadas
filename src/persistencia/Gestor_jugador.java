@@ -18,7 +18,7 @@ public class Gestor_jugador {
 	}
 	
 	public List<Jugador> readAll() throws SQLException {
-		String sql = "SELECT * FROM playerpersonaldata";
+		String sql = "SELECT * FROM playerpersonaldata ORDER BY Overall DESC";
 		
 		String nombre, foto, nac, flag, club, logo, valor, salario;
 		int id, edad, potencial, overall, salEspecial;

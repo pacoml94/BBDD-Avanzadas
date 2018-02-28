@@ -25,6 +25,9 @@ import javax.swing.JLabel;
 import java.awt.GridLayout;
 import javax.swing.border.TitledBorder;
 import java.awt.Color;
+import javax.swing.JSpinner;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class OnceIdealGUI {
 
@@ -49,6 +52,8 @@ public class OnceIdealGUI {
 	private final JLabel lblOV = new JLabel("");
 	private final JLabel lblCl = new JLabel("");
 	private final JLabel lblPrecio = new JLabel("");
+	private final JPanel pnlAlineacion = new JPanel();
+	private final JComboBox cbFormacion = new JComboBox();
 	/**
 	 * Launch the application.
 	 */
@@ -143,6 +148,15 @@ public class OnceIdealGUI {
 		}
 		{
 			panel.add(lblPrecio);
+		}
+		{
+			tbFIFA18.addTab("Alineación", null, pnlAlineacion, null);
+		}
+		pnlAlineacion.setLayout(null);
+		{
+			cbFormacion.setBounds(161, 6, 236, 27);
+			cbFormacion.setModel(new DefaultComboBoxModel(new String[] {"Seleccione una formación…", "4-4-2", "4-3-3", "4-3-2-1"}));
+			pnlAlineacion.add(cbFormacion);
 		}
 		{
 			DefaultListModel modeloLista = new DefaultListModel<>();
