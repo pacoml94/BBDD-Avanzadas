@@ -17,9 +17,13 @@ import dominio.Jugador;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionListener;
+
+import com.sun.prism.Image;
+
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
@@ -28,6 +32,7 @@ import java.awt.Color;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 
 public class OnceIdealGUI {
 
@@ -54,6 +59,8 @@ public class OnceIdealGUI {
 	private final JLabel lblPrecio = new JLabel("");
 	private final JPanel pnlAlineacion = new JPanel();
 	private final JComboBox cbFormacion = new JComboBox();
+	private final JPanel pnlCampo = new JPanel();
+	private final JLabel lblImagenCampo = new JLabel("");
 	/**
 	 * Launch the application.
 	 */
@@ -157,6 +164,28 @@ public class OnceIdealGUI {
 			cbFormacion.setBounds(161, 6, 236, 27);
 			cbFormacion.setModel(new DefaultComboBoxModel(new String[] {"Seleccione una formación…", "4-4-2", "4-3-3", "4-3-2-1"}));
 			pnlAlineacion.add(cbFormacion);
+		}
+		{
+			pnlCampo.setBounds(27, 38, 520, 437);
+			pnlAlineacion.add(pnlCampo);
+		}
+		{
+			/*
+			 * ImageIcon fot = new ImageIcon(path_ala_imagen);
+Icon icono = new ImageIcon(fot.getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_DEFAULT));
+jLabel1.setIcon(icono);
+this.repaint();
+			 */
+			pnlCampo.setLayout(null);
+			{
+				lblImagenCampo.setBounds(0, 0, pnlCampo.getWidth(), pnlCampo.getHeight());
+				pnlCampo.add(lblImagenCampo);
+			}
+			
+			ImageIcon campo = new ImageIcon(OnceIdealGUI.class.getResource("/presentacion/campo-de-chapas-para-futbol.jpg"));
+			Icon imCampo = new ImageIcon(campo.getImage().getScaledInstance(lblImagenCampo.getWidth(), lblImagenCampo.getHeight(), 
+					java.awt.Image.SCALE_DEFAULT));
+			lblImagenCampo.setIcon(imCampo);
 		}
 		{
 			DefaultListModel modeloLista = new DefaultListModel<>();
