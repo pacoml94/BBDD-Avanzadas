@@ -170,12 +170,6 @@ public class OnceIdealGUI {
 			pnlAlineacion.add(pnlCampo);
 		}
 		{
-			/*
-			 * ImageIcon fot = new ImageIcon(path_ala_imagen);
-Icon icono = new ImageIcon(fot.getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_DEFAULT));
-jLabel1.setIcon(icono);
-this.repaint();
-			 */
 			pnlCampo.setLayout(null);
 			{
 				lblImagenCampo.setBounds(0, 0, pnlCampo.getWidth(), pnlCampo.getHeight());
