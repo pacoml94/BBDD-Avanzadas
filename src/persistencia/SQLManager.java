@@ -16,7 +16,7 @@ public class SQLManager {
 		try {
 
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/fifa18", "root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/fifa18", "root", "");
 			stt = conexion.createStatement();
 
 		} catch (Exception e) {

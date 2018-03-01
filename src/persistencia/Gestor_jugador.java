@@ -23,7 +23,7 @@ public class Gestor_jugador {
 		while (rs.next()) {
 			jugadores.add(new Jugador(
 					rs.getInt(1), rs.getString(2), rs.getInt(3),rs.getString(4),rs.getInt(5),
-					rs.getInt(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getInt(10),
+					rs.getInt(6),rs.getString(7),rs.getString("Value"),rs.getInt(9),rs.getInt(10),
 					rs.getInt(11),rs.getInt(12),rs.getInt(13),rs.getInt(14),rs.getInt(15),
 					rs.getInt(16),rs.getInt(17),rs.getInt(18),rs.getInt(19),rs.getInt(20),
 					rs.getInt(21),rs.getInt(22),rs.getString(23),rs.getInt(24),rs.getInt(25),

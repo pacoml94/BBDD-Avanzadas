@@ -220,7 +220,7 @@ public class OnceIdealGUI {
 			lblNac.setText(jugador.nac);
 			lblOV.setText(String.valueOf(jugador.overall));
 			lblCl.setText(jugador.club);
-			lblPrecio.setText(jugador.precio);
+			lblPrecio.setText(jugador.valor);
 			} 
 		}
 	
