@@ -9,52 +9,51 @@ import dominio.Jugador;
 
 public class Gestor_jugador {
 
-	private Agente agenteBD;
 	private List<Jugador> jugadores;
 	
 	public Gestor_jugador() {
-		agenteBD = Agente.getAgente();
 		jugadores = new ArrayList<>();
 	}
 	
 	public List<Jugador> readAll() throws SQLException {
-		String sql = "SELECT * FROM playerpersonaldata ORDER BY Overall DESC";
+		this.jugadores=new ArrayList<>();
 		
-		String nombre, foto, nac, flag, club, logo, valor, salario;
-		int id, edad, potencial, overall, salEspecial;
-		ResultSet rs = agenteBD.read(sql);
+		ResultSet rs = SQLManager.select("playerdata");
 		
 		while (rs.next()) {
-			id = rs.getInt(1);
-			nombre = rs.getString(2);
-			edad = rs.getInt(3);
-			foto = rs.getString(4);
-			nac = rs.getString(5);
-			flag = rs.getString(6);
-			overall = rs.getInt(7);
-			potencial = rs.getInt(8);
-			club = rs.getString(9);
-			logo = rs.getString(10);
-			valor = rs.getString(11);
-			salario = rs.getString(12);
-			salEspecial = rs.getInt(13);
-			jugadores.add(new Jugador(id,nombre,edad,foto,nac,flag,overall,potencial,club,logo,valor,salario,salEspecial));
+			jugadores.add(new Jugador(
+					rs.getInt(1), rs.getString(2), rs.getInt(3),rs.getString(4),rs.getInt(5),
+					rs.getInt(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getInt(10),
+					rs.getInt(11),rs.getInt(12),rs.getInt(13),rs.getInt(14),rs.getInt(15),
+					rs.getInt(16),rs.getInt(17),rs.getInt(18),rs.getInt(19),rs.getInt(20),
+					rs.getInt(21),rs.getInt(22),rs.getString(23),rs.getInt(24),rs.getInt(25),
+					rs.getInt(26),rs.getInt(27),rs.getInt(28),rs.getInt(29),rs.getInt(30),
+					rs.getInt(31),rs.getInt(32),rs.getInt(33),rs.getInt(34),rs.getInt(35),
+					rs.getInt(36),rs.getInt(37),rs.getInt(38),rs.getInt(39),rs.getInt(40),
+					rs.getInt(41),rs.getInt(42),rs.getInt(43)));
 		}
 		
+		SQLManager.desconectar();
 		return jugadores;
 	}
 	
 	public Jugador readJugador(String nombre) throws SQLException {
-		String sql = "SELECT * FROM playerpersonaldata "
-				+ "WHERE Name='"+nombre+"';";
 		Jugador j = null;
-		ResultSet rs = agenteBD.read(sql);
 		
+		ResultSet rs = SQLManager.select("playerdata",nombre);
 		if (rs.next()) {
-			j = new Jugador(rs.getString("Name"), rs.getString("Nationality"), rs.getString("Club"), rs.getString("Value"), 
-					rs.getInt("ID"), rs.getInt("Age"), rs.getInt("Potential"), rs.getInt("Overall"), rs.getString("Value"));
+			j = new Jugador(
+					rs.getInt(1), rs.getString(2), rs.getInt(3),rs.getString(4),rs.getInt(5),
+					rs.getInt(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getInt(10),
+					rs.getInt(11),rs.getInt(12),rs.getInt(13),rs.getInt(14),rs.getInt(15),
+					rs.getInt(16),rs.getInt(17),rs.getInt(18),rs.getInt(19),rs.getInt(20),
+					rs.getInt(21),rs.getInt(22),rs.getString(23),rs.getInt(24),rs.getInt(25),
+					rs.getInt(26),rs.getInt(27),rs.getInt(28),rs.getInt(29),rs.getInt(30),
+					rs.getInt(31),rs.getInt(32),rs.getInt(33),rs.getInt(34),rs.getInt(35),
+					rs.getInt(36),rs.getInt(37),rs.getInt(38),rs.getInt(39),rs.getInt(40),
+					rs.getInt(41),rs.getInt(42),rs.getInt(43));
 		}
-		
+		SQLManager.desconectar();
 		return j;
 	}
 }

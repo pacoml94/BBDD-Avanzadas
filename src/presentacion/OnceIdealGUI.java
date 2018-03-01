@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 
 import dominio.Jugador;
+import persistencia.Gestor_jugador;
 
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
@@ -65,6 +66,7 @@ public class OnceIdealGUI {
 	private final JScrollPane scrollPane_1 = new JScrollPane();
 	private final JList lstAlineacionInicial = new JList();
 	private List<Jugador> onceInicial;
+	private Gestor_jugador gestor;
 	/**
 	 * Launch the application.
 	 */
@@ -85,15 +87,7 @@ public class OnceIdealGUI {
 	 * Create the application. 
 	 */
 	public OnceIdealGUI() {
-		Jugador aux = new Jugador();
-		this.listaJugadores = new ArrayList<>();
-		try {
-			this.listaJugadores = aux.leerTodos();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		this.onceInicial = new ArrayList<>();
+		
 		initialize();
 	}
 
@@ -101,6 +95,14 @@ public class OnceIdealGUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		gestor=new Gestor_jugador();
+		this.onceInicial = new ArrayList<>();
+		try {
+			this.listaJugadores = gestor.readAll();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		frame = new JFrame();
 		frame.setBounds(100, 100, 589, 549);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -122,7 +124,7 @@ public class OnceIdealGUI {
 			lstJugadores.addListSelectionListener(new LstJugadoresListSelectionListener());
 			lstJugadores.setModel(modeloLista);
 			for (int i = 0; i < listaJugadores.size(); i++) {
-				modeloLista.addElement(listaJugadores.get(i).getNombre());
+				modeloLista.addElement(listaJugadores.get(i).nombre);
 			}
 			scrollPane.setViewportView(lstJugadores);
 		}
@@ -185,7 +187,7 @@ public class OnceIdealGUI {
 				lstAlineacionInicial.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				DefaultListModel modeloLista = new DefaultListModel<>();
 				for (int i = 0; i < listaJugadores.size(); i++) {
-					modeloLista.addElement(listaJugadores.get(i).getNombre());
+					modeloLista.addElement(listaJugadores.get(i).nombre);
 				}
 				lstAlineacionInicial.setModel(modeloLista);
 				scrollPane_1.setViewportView(lstAlineacionInicial);
@@ -203,7 +205,7 @@ public class OnceIdealGUI {
 		{
 			DefaultListModel modeloLista = new DefaultListModel<>();
 			for (int i = 0; i < listaJugadores.size(); i++) {
-				modeloLista.addElement(listaJugadores.get(i).getNombre());
+				modeloLista.addElement(listaJugadores.get(i).nombre);
 			}
 		}
 	}
@@ -211,19 +213,15 @@ public class OnceIdealGUI {
 		public void valueChanged(ListSelectionEvent e) {
 			String nombre = lstJugadores.getSelectedValue().toString();
 			Jugador aux = new Jugador(nombre);
-			try {
-				Jugador jugador = aux.leerJugador();
-				lblID.setText(String.valueOf(jugador.getId()));
-				lblNom.setText(jugador.getNombre());
-				lblE.setText(String.valueOf(jugador.getEdad()));
-				lblNac.setText(jugador.getNac());
-				lblOV.setText(String.valueOf(jugador.getOverall()));
-				lblCl.setText(jugador.getClub());
-				lblPrecio.setText(jugador.getPrecio());
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			Jugador jugador = listaJugadores.get(lstJugadores.getSelectedIndex());
+			lblID.setText(String.valueOf(jugador.id));
+			lblNom.setText(jugador.nombre);
+			lblE.setText(String.valueOf(jugador.edad));
+			lblNac.setText(jugador.nac);
+			lblOV.setText(String.valueOf(jugador.overall));
+			lblCl.setText(jugador.club);
+			lblPrecio.setText(jugador.precio);
+			} 
 		}
-	}
+	
 }
