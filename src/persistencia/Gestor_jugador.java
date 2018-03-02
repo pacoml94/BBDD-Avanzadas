@@ -11,13 +11,13 @@ import dominio.Jugador;
 
 public class Gestor_jugador {
 
-	private List<Jugador> jugadores;
+	private ArrayList<Jugador> jugadores;
 
 	public Gestor_jugador() {
 		jugadores = new ArrayList<>();
 	}
 
-	public List<Jugador> readAll() throws SQLException {
+	public ArrayList<Jugador> readAll() throws SQLException {
 		this.jugadores = new ArrayList<>();
 
 		ResultSet rs = SQLManager.select("playerdata");
@@ -62,8 +62,12 @@ public class Gestor_jugador {
 			ResultSet rs=SQLManager.select("playerData", "PreferredPositions='GK' order by Overall desc");
 			alineacion.add(sacarMejor(rs,alineacion));
 			
-			rs=SQLManager.selectMejor("playerData","CB");
+			rs=SQLManager.selectMejor("playerData","PreferredPositions='CB' order by Overall desc");
 			alineacion.add(sacarMejor(rs,alineacion));
+			
+			rs = SQLManager.selectMejor("playerData", "PreferredPositions='CB' order by Overall desc");
+			alineacion.add(sacarMejor(rs, alineacion));
+			System.out.println(alineacion.toString());
 			
 			/**
 			 * TODO: COMPLETAR LAS ALINEACIONES SIGUIENDO EL TXT formaciones.txt
@@ -105,6 +109,23 @@ public class Gestor_jugador {
 			/**
 			 * TODO: BUSCAR EL ID DEL JUGADOR EN EL ARRAYLIST DE ALINEACION Y SI EXISTE HACER NEXT EN EL RESULTSET HASTA QUE COJA UN JUGADOR QUE NO ESTÉ ELEGIDO AÚN
 			 */
+			
+			if (jugadores.isEmpty()) {
+				jugadores.add(j);
+			}
+			
+			for (int i = 1; i < jugadores.size(); i++) {
+				for (int k = 0; k < jugadores.size(); k++) {
+					if (j.id != jugadores.get(k).id) {
+						jugadores.add(j);
+						k = jugadores.size();
+						i = jugadores.size();
+					} else {
+						k = jugadores.size();
+						i = jugadores.size();
+					}
+				}
+			}
 			
 		}
 		SQLManager.desconectar();

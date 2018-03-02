@@ -35,11 +35,13 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.ListSelectionModel;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class OnceIdealGUI {
 
 	private JFrame frame;
-	private List<Jugador> listaJugadores;
+	private ArrayList<Jugador> listaJugadores;
 	private final JTabbedPane tbFIFA18 = new JTabbedPane(JTabbedPane.TOP);
 	private final JPanel pnlJugadoresDisponibles = new JPanel();
 	private final JScrollPane scrollPane = new JScrollPane();
@@ -65,7 +67,7 @@ public class OnceIdealGUI {
 	private final JLabel lblImagenCampo = new JLabel("");
 	private final JScrollPane scrollPane_1 = new JScrollPane();
 	private final JList lstAlineacionInicial = new JList();
-	private List<Jugador> onceInicial;
+	private ArrayList<Jugador> onceInicial;
 	private Gestor_jugador gestor;
 	private final JLabel lblPosition = new JLabel("Posición:");
 	private final JLabel lblPos = new JLabel("");
@@ -177,6 +179,7 @@ public class OnceIdealGUI {
 		}
 		pnlAlineacion.setLayout(null);
 		{
+			cbFormacion.addItemListener(new cbItemListener());
 			cbFormacion.setBounds(161, 6, 236, 27);
 			cbFormacion.setModel(new DefaultComboBoxModel(new String[] {"Seleccione una formación…", "4-4-2", "4-3-3", "3-4-2-1", "4-1-2-1-2", "5-2-1-2"}));
 			pnlAlineacion.add(cbFormacion);
@@ -232,6 +235,17 @@ public class OnceIdealGUI {
 			lblPrecio.setText(jugador.valor);
 			lblPos.setText(jugador.preferedPosition);
 			} 
+	}
+	private class cbItemListener implements ItemListener {
+		public void itemStateChanged(ItemEvent e) {
+			String formacion = cbFormacion.getSelectedItem().toString();
+			try {
+				gestor.alineacionIdeal(listaJugadores, formacion);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 	
 }
