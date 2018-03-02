@@ -67,6 +67,8 @@ public class OnceIdealGUI {
 	private final JList lstAlineacionInicial = new JList();
 	private List<Jugador> onceInicial;
 	private Gestor_jugador gestor;
+	private final JLabel lblPosition = new JLabel("Posición:");
+	private final JLabel lblPos = new JLabel("");
 	/**
 	 * Launch the application.
 	 */
@@ -153,6 +155,12 @@ public class OnceIdealGUI {
 			panel.add(lblOV);
 		}
 		{
+			panel.add(lblPosition);
+		}
+		{
+			panel.add(lblPos);
+		}
+		{
 			panel.add(lblClub);
 		}
 		{
@@ -221,6 +229,7 @@ public class OnceIdealGUI {
 			lblOV.setText(String.valueOf(jugador.overall));
 			lblCl.setText(jugador.club);
 			lblPrecio.setText(jugador.valor);
+			lblPos.setText(jugador.preferedPosition);
 			} 
 		}
 	
