@@ -58,7 +58,20 @@ public class SQLManager {
 		ResultSet rs = null;
 		try {
 			conectar();
-			rs = stt.executeQuery("select * from " + tabla+" order by Overall desc");
+			rs = stt.executeQuery("select * from " + tabla+ " order by Overall desc");
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error de BD", JOptionPane.ERROR_MESSAGE);
+
+		}
+		return rs;
+	}
+	
+	public static ResultSet selectMejor(String tabla,String criterio) {
+		ResultSet rs = null;
+		try {
+			conectar();
+			rs = stt.executeQuery("select * from " + tabla+" order by "+criterio+" desc");
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error de BD", JOptionPane.ERROR_MESSAGE);

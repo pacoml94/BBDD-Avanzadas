@@ -217,6 +217,7 @@ public class OnceIdealGUI {
 			}
 		}
 	}
+	
 	private class LstJugadoresListSelectionListener implements ListSelectionListener {
 		public void valueChanged(ListSelectionEvent e) {
 			String nombre = lstJugadores.getSelectedValue().toString();
@@ -231,6 +232,6 @@ public class OnceIdealGUI {
 			lblPrecio.setText(jugador.valor);
 			lblPos.setText(jugador.preferedPosition);
 			} 
-		}
+	}
 	
 }
