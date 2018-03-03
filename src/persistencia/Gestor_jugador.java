@@ -57,9 +57,92 @@ public class Gestor_jugador {
 
 	public ArrayList<Jugador> alineacionIdeal(ArrayList<Jugador> jugadores, String formacion) throws SQLException {
 		ArrayList<Jugador> alineacion = new ArrayList<>();
+		
+		ResultSet rs = SQLManager.select("playerData", "PreferredPositions='GK' order by Overall desc");
+		alineacion.add(sacarMejor(rs, alineacion));
+		SQLManager.desconectar();
+		
 		switch (formacion) {
 		case "3-4-2-1":
-			ResultSet rs = SQLManager.select("playerData", "PreferredPositions='GK' order by Overall desc");
+			rs = SQLManager.selectMejor("playerData", "CB");
+			alineacion.add(sacarMejor(rs, alineacion));
+			alineacion.add(sacarMejor(rs, alineacion));
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "LM");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "CM");
+			alineacion.add(sacarMejor(rs, alineacion));
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "RM");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "LF");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "ST");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "RF");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			/**
+			 * TODO: COMPLETAR LAS ALINEACIONES SIGUIENDO EL TXT formaciones.txt
+			 */
+
+			break;
+
+		case "4-1-2-1-2":
+			
+			rs = SQLManager.selectMejor("playerData", "LB");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "CB");
+			alineacion.add(sacarMejor(rs, alineacion));
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "RB");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "CDM");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "LM");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "RM");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "CM");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "ST");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "ST");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			break;
+			
+		case "5-2-1-2":
+			rs = SQLManager.selectMejor("playerData", "LWB");
 			alineacion.add(sacarMejor(rs, alineacion));
 			SQLManager.desconectar();
 			
@@ -69,24 +152,93 @@ public class Gestor_jugador {
 			alineacion.add(sacarMejor(rs, alineacion));
 			SQLManager.desconectar();
 			
+			rs = SQLManager.selectMejor("playerData", "RWB");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
 			
-			/**
-			 * TODO: COMPLETAR LAS ALINEACIONES SIGUIENDO EL TXT formaciones.txt
-			 */
-
-			break;
-
-		case "4-1-2-1-2":
-
-			break;
-		case "5-2-1-2":
-
+			rs = SQLManager.selectMejor("playerData", "CM");
+			alineacion.add(sacarMejor(rs, alineacion));
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "CAM");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "ST");
+			alineacion.add(sacarMejor(rs, alineacion));
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
 			break;
 		case "4-4-2":
-
+			rs = SQLManager.selectMejor("playerData", "LB");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "CB");
+			alineacion.add(sacarMejor(rs, alineacion));
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "RB");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "LM");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "CM");
+			alineacion.add(sacarMejor(rs, alineacion));
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "RM");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "ST");
+			alineacion.add(sacarMejor(rs, alineacion));
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
 			break;
 		case "4-3-3":
-
+			rs = SQLManager.selectMejor("playerData", "LB");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "CB");
+			alineacion.add(sacarMejor(rs, alineacion));
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "RB");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "CM");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "CDM");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "CM");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "LW");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "ST");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
+			
+			rs = SQLManager.selectMejor("playerData", "RW");
+			alineacion.add(sacarMejor(rs, alineacion));
+			SQLManager.desconectar();
 			break;
 
 		}

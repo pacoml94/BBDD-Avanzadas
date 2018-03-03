@@ -196,11 +196,6 @@ public class OnceIdealGUI {
 			}
 			{
 				lstAlineacionInicial.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-				DefaultListModel modeloLista = new DefaultListModel<>();
-				for (int i = 0; i < listaJugadores.size(); i++) {
-					modeloLista.addElement(listaJugadores.get(i).nombre);
-				}
-				lstAlineacionInicial.setModel(modeloLista);
 				scrollPane_1.setViewportView(lstAlineacionInicial);
 			}
 			{
@@ -240,7 +235,12 @@ public class OnceIdealGUI {
 		public void itemStateChanged(ItemEvent e) {
 			String formacion = cbFormacion.getSelectedItem().toString();
 			try {
-				gestor.alineacionIdeal(listaJugadores, formacion);
+				ArrayList<Jugador> alineacion = gestor.alineacionIdeal(listaJugadores, formacion);
+				DefaultListModel modeloLista = new DefaultListModel<>();
+				for (int i = 0; i < alineacion.size(); i++) {
+					modeloLista.addElement(alineacion.get(i).nombre);
+				}
+				lstAlineacionInicial.setModel(modeloLista);
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
