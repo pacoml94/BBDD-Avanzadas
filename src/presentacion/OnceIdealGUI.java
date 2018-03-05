@@ -238,7 +238,8 @@ public class OnceIdealGUI {
 				ArrayList<Jugador> alineacion = gestor.alineacionIdeal(listaJugadores, formacion);
 				DefaultListModel modeloLista = new DefaultListModel<>();
 				for (int i = 0; i < alineacion.size(); i++) {
-					modeloLista.addElement(alineacion.get(i).nombre);
+					String[]posiciones=(alineacion.get(i).preferedPosition).split(" ");
+					modeloLista.addElement(posiciones[0]+" "+alineacion.get(i).nombre+" "+alineacion.get(i).overall);
 				}
 				lstAlineacionInicial.setModel(modeloLista);
 			} catch (SQLException e1) {

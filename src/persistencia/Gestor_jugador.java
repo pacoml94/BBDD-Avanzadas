@@ -161,7 +161,7 @@ public class Gestor_jugador {
 			alineacion.add(sacarMejor(rs, alineacion));
 			SQLManager.desconectar();
 			
-			rs = SQLManager.selectMejor("playerData", "CAM");
+			rs = SQLManager.select("playerData", "PreferredPositions='CAM' or PreferredPositions='CAM%' or PreferredPositions='%CAM' or PreferredPositions='%CAM%' order by Overall desc");
 			alineacion.add(sacarMejor(rs, alineacion));
 			SQLManager.desconectar();
 			
