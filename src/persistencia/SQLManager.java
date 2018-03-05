@@ -4,8 +4,6 @@ import java.sql.*;
 
 import javax.swing.JOptionPane;
 
-import dominio.*;
-
 public class SQLManager {
 
 	static Connection conexion = null;

@@ -3,34 +3,26 @@ package presentacion;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JButton;
 import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 
 import dominio.Jugador;
 import persistencia.Gestor_jugador;
 
 import javax.swing.JList;
-import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionListener;
 
-import com.sun.prism.Image;
-
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
 import javax.swing.border.TitledBorder;
 import java.awt.Color;
-import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -45,7 +37,7 @@ public class OnceIdealGUI {
 	private final JTabbedPane tbFIFA18 = new JTabbedPane(JTabbedPane.TOP);
 	private final JPanel pnlJugadoresDisponibles = new JPanel();
 	private final JScrollPane scrollPane = new JScrollPane();
-	private final JList lstJugadores = new JList();
+	private final JList <String> lstJugadores = new JList<>();
 	private final JLabel lblIdDelJugador = new JLabel("ID del jugador:");
 	private final JLabel lblID = new JLabel("");
 	private final JLabel lblNombreDelJugador = new JLabel("Nombre del jugador:");
@@ -62,12 +54,11 @@ public class OnceIdealGUI {
 	private final JLabel lblCl = new JLabel("");
 	private final JLabel lblPrecio = new JLabel("");
 	private final JPanel pnlAlineacion = new JPanel();
-	private final JComboBox cbFormacion = new JComboBox();
+	private final JComboBox <String> cbFormacion = new JComboBox<String>();
 	private final JPanel pnlCampo = new JPanel();
 	private final JLabel lblImagenCampo = new JLabel("");
 	private final JScrollPane scrollPane_1 = new JScrollPane();
-	private final JList lstAlineacionInicial = new JList();
-	private ArrayList<Jugador> onceInicial;
+	private final JList<String> lstAlineacionInicial = new JList<String>();
 	private Gestor_jugador gestor;
 	private final JLabel lblPosition = new JLabel("Posición:");
 	private final JLabel lblPos = new JLabel("");
@@ -100,7 +91,7 @@ public class OnceIdealGUI {
 	 */
 	private void initialize() {
 		gestor=new Gestor_jugador();
-		this.onceInicial = new ArrayList<>();
+		new ArrayList<>();
 		try {
 			this.listaJugadores = gestor.readAll();
 		} catch (SQLException e) {
@@ -123,7 +114,7 @@ public class OnceIdealGUI {
 			pnlJugadoresDisponibles.add(scrollPane);
 		}
 		{
-			DefaultListModel modeloLista = new DefaultListModel<>();
+			DefaultListModel <String> modeloLista = new DefaultListModel<>();
 			lstJugadores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			lstJugadores.addListSelectionListener(new LstJugadoresListSelectionListener());
 			lstJugadores.setModel(modeloLista);
@@ -181,7 +172,7 @@ public class OnceIdealGUI {
 		{
 			cbFormacion.addItemListener(new cbItemListener());
 			cbFormacion.setBounds(161, 6, 236, 27);
-			cbFormacion.setModel(new DefaultComboBoxModel(new String[] {"Seleccione una formación…", "4-4-2", "4-3-3", "3-4-2-1", "4-1-2-1-2", "5-2-1-2"}));
+			cbFormacion.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione una formación…", "4-4-2", "4-3-3", "3-4-2-1", "4-1-2-1-2", "5-2-1-2"}));
 			pnlAlineacion.add(cbFormacion);
 		}
 		{
@@ -209,7 +200,7 @@ public class OnceIdealGUI {
 			lblImagenCampo.setIcon(imCampo);
 		}
 		{
-			DefaultListModel modeloLista = new DefaultListModel<>();
+			DefaultListModel<String> modeloLista = new DefaultListModel<>();
 			for (int i = 0; i < listaJugadores.size(); i++) {
 				modeloLista.addElement(listaJugadores.get(i).nombre);
 			}
@@ -219,7 +210,7 @@ public class OnceIdealGUI {
 	private class LstJugadoresListSelectionListener implements ListSelectionListener {
 		public void valueChanged(ListSelectionEvent e) {
 			String nombre = lstJugadores.getSelectedValue().toString();
-			Jugador aux = new Jugador(nombre);
+			new Jugador(nombre);
 			Jugador jugador = listaJugadores.get(lstJugadores.getSelectedIndex());
 			lblID.setText(String.valueOf(jugador.id));
 			lblNom.setText(jugador.nombre);
@@ -236,7 +227,7 @@ public class OnceIdealGUI {
 			String formacion = cbFormacion.getSelectedItem().toString();
 			try {
 				ArrayList<Jugador> alineacion = gestor.alineacionIdeal(listaJugadores, formacion);
-				DefaultListModel modeloLista = new DefaultListModel<>();
+				DefaultListModel <String> modeloLista = new DefaultListModel<>();
 				for (int i = 0; i < alineacion.size(); i++) {
 					String[]posiciones=(alineacion.get(i).preferedPosition).split(" ");
 					modeloLista.addElement(posiciones[0]+" "+alineacion.get(i).nombre+" "+alineacion.get(i).overall);

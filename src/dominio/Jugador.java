@@ -1,12 +1,10 @@
 package dominio;
 
-import java.sql.SQLException;
-import java.util.List;
-
 import persistencia.Gestor_jugador;
 
 public class Jugador {
 
+	@SuppressWarnings("unused")
 	private Gestor_jugador gestor_jugador;
 	public String nombre, foto, nac, flag, club, logo, valor, salario, precio, preferedPosition;
 	public int id, edad, potencial, overall, salEspecial, GK,
@@ -78,11 +76,6 @@ public class Jugador {
 	}
 	public Jugador(String nombre) {
 		this.nombre=nombre;
-	}
-
-	
-	public Jugador leerJugador() throws SQLException {
-		return gestor_jugador.readJugador(this.nombre);
 	}
 
 }
